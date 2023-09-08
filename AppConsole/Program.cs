@@ -56,10 +56,12 @@ class Program
         //Build the host
         using IHost host = builder.Build();
 
+        /*
         #region To be removed for the real application
         Verification(host);
         #endregion
-
+        */
+        /*
         #region seeding the model
         var friendService = host.Services.CreateScope()
             .ServiceProvider.GetRequiredService<IFriendsService>();
@@ -67,6 +69,34 @@ class Program
         await FriendServiceSnapshot(friendService);
         await FriendServiceInfo(friendService);
         #endregion
+        */
+
+
+        using (var db = csMainDbContext.DbContext("sysadmin"))
+        {
+            var mg = new csMusicGroup
+            {
+                MusicGroupId = Guid.NewGuid(),
+                Name = "Blues Bros",
+                EstablishedYear = 1970
+            };
+
+            var al = new csAlbum { AlbumId = Guid.NewGuid(),
+                Name = "Keep on bluesing", CopiesSold = 1000, ReleaseYear = 1980, MusicGroup = mg };
+
+            mg.Albums.Add(al);
+
+            db.MusicGroups.Add(mg);
+            db.SaveChanges();
+        }
+
+        using (var db = csMainDbContext.DbContext("sysadmin"))
+        {
+            foreach (var mg in db.MusicGroups)
+            {
+                Console.WriteLine(mg.Name);
+            }
+        }
 
         //Terminate the host and the Application properly
         await host.RunAsync();

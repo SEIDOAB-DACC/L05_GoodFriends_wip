@@ -27,7 +27,7 @@ namespace DbModels
         public int ReleaseYear { get; set; }
         public long CopiesSold { get; set; }
 
-        public List<csMusicGroup> MusicGroup { get; set; } = new List<csMusicGroup>();
+        public csMusicGroup MusicGroup { get; set; }
 
         public csAlbum()
         {
