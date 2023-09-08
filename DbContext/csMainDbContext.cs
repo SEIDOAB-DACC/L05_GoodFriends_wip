@@ -21,6 +21,7 @@ public class csMainDbContext : Microsoft.EntityFrameworkCore.DbContext
 
     #region class - Table mapping
     public DbSet<csMusicGroup> MusicGroups { get; set; }
+    public DbSet<csAlbum> Albums { get; set; }
     #endregion
 
     #region get right context from DbSet configuration in json file and UserLogin

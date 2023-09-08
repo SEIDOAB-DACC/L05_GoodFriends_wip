@@ -4,6 +4,7 @@ using DbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DbContext.Migrations.SqlServerDbContext
 {
     [DbContext(typeof(csMainDbContext.SqlServerDbContext))]
-    partial class SqlServerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230908132452_m_albums2")]
+    partial class m_albums2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,7 +47,7 @@ namespace DbContext.Migrations.SqlServerDbContext
 
                     b.HasIndex("MusicGroupId");
 
-                    b.ToTable("Albums", (string)null);
+                    b.ToTable("Albums");
                 });
 
             modelBuilder.Entity("DbModels.csMusicGroup", b =>
@@ -61,7 +64,7 @@ namespace DbContext.Migrations.SqlServerDbContext
 
                     b.HasKey("MusicGroupId");
 
-                    b.ToTable("MusicGroups", (string)null);
+                    b.ToTable("MusicGroups");
                 });
 
             modelBuilder.Entity("DbModels.csAlbum", b =>

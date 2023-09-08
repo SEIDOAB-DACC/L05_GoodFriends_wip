@@ -4,6 +4,7 @@ using DbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DbContext.Migrations.SqlServerDbContext
 {
     [DbContext(typeof(csMainDbContext.SqlServerDbContext))]
-    partial class SqlServerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230908132042_m_albums1")]
+    partial class m_albums1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,9 +34,6 @@ namespace DbContext.Migrations.SqlServerDbContext
                     b.Property<long>("CopiesSold")
                         .HasColumnType("bigint");
 
-                    b.Property<Guid?>("MusicGroupId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(200)");
 
@@ -42,9 +42,7 @@ namespace DbContext.Migrations.SqlServerDbContext
 
                     b.HasKey("AlbumId");
 
-                    b.HasIndex("MusicGroupId");
-
-                    b.ToTable("Albums", (string)null);
+                    b.ToTable("Albums");
                 });
 
             modelBuilder.Entity("DbModels.csMusicGroup", b =>
@@ -61,21 +59,7 @@ namespace DbContext.Migrations.SqlServerDbContext
 
                     b.HasKey("MusicGroupId");
 
-                    b.ToTable("MusicGroups", (string)null);
-                });
-
-            modelBuilder.Entity("DbModels.csAlbum", b =>
-                {
-                    b.HasOne("DbModels.csMusicGroup", "MusicGroup")
-                        .WithMany("Albums")
-                        .HasForeignKey("MusicGroupId");
-
-                    b.Navigation("MusicGroup");
-                });
-
-            modelBuilder.Entity("DbModels.csMusicGroup", b =>
-                {
-                    b.Navigation("Albums");
+                    b.ToTable("MusicGroups");
                 });
 #pragma warning restore 612, 618
         }
