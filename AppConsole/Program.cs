@@ -96,6 +96,10 @@ class Program
             {
                 Console.WriteLine(mg.Name);
             }
+            foreach (var al in db.Albums)
+            {
+                Console.WriteLine(al.Name);
+            }
         }
 
         //Terminate the host and the Application properly
