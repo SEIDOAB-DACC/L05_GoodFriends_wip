@@ -19,6 +19,10 @@ public class csMainDbContext : Microsoft.EntityFrameworkCore.DbContext
 {
     static public string Hello { get; } = $"Hello from namespace {nameof(DbContext)}, class {nameof(csMainDbContext)}";
 
+    #region class - Table mapping
+    public DbSet<csMusicGroup> MusicGroups { get; set; }
+    #endregion
+
     #region get right context from DbSet configuration in json file and UserLogin
     public static DbContextOptionsBuilder<csMainDbContext> DbContextOptions(DbLoginDetail loginDetail)
     {
