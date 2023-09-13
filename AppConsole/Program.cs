@@ -77,12 +77,12 @@ class Program
             var mg = new csMusicGroup
             {
                 MusicGroupId = Guid.NewGuid(),
-                Name = "Blues Bros",
+                Name = "Led Zepplin",
                 EstablishedYear = 1970
             };
 
             var al = new csAlbum { AlbumId = Guid.NewGuid(),
-                Name = "Keep on bluesing", CopiesSold = 1000, ReleaseYear = 1980, MusicGroup = mg };
+                Name = "Keep on rocking", CopiesSold = 1000, ReleaseYear = 1980, MusicGroup = mg };
 
             mg.Albums.Add(al);
 
