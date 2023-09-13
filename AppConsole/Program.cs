@@ -71,22 +71,19 @@ class Program
         #endregion
         */
 
-
+        var sgen = new csSeedGenerator();
         using (var db = csMainDbContext.DbContext("sysadmin"))
         {
-            var mg = new csMusicGroup
+            for (int i = 0; i < 1000; i++)
             {
-                MusicGroupId = Guid.NewGuid(),
-                Name = "Led Zepplin",
-                EstablishedYear = 1970
-            };
+                var mg = new csMusicGroup().Seed(sgen);
+                var al = new csAlbum().Seed(sgen);
 
-            var al = new csAlbum { AlbumId = Guid.NewGuid(),
-                Name = "Keep on rocking", CopiesSold = 1000, ReleaseYear = 1980, MusicGroup = mg };
+                mg.Albums.Add(al);
 
-            mg.Albums.Add(al);
+                db.MusicGroups.Add(mg);
+            }
 
-            db.MusicGroups.Add(mg);
             db.SaveChanges();
         }
 

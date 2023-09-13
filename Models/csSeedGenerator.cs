@@ -101,6 +101,15 @@ namespace Models
             new GoodQuote("Procrastinate now, don't put it off.","Ellen DeGeneres"),
         };
 
+        string[] _musicbands = ("Led, Zeppelin, Queen, Pink, Floyd, Creedence, Clearwater, Revival, " +
+                                "Arosmith, Who, AC/DC, Rolling, Stones, Eagles, Deep, Purple, Prince, Dylan").Split(", ");
+        string[] _musicalbums = ("Heaven, Rock, Moon, Cosmos, Walk, Hunky, Blue, Highway" +
+                                "Satisfaction, Californnia, Stairway, Purple, Senor").Split(", ");
+
+        public string MusicBand => "The " + _musicbands[this.Next(0, _musicbands.Length)] + " " + _musicbands[this.Next(0, _musicbands.Length)];
+        public string MusicAlbum => _musicalbums[this.Next(0, _musicalbums.Length)] + " " + _musicalbums[this.Next(0, _musicalbums.Length)];
+
+
         public string PetName => _petnames[this.Next(0, _petnames.Length)];
 
         public string FirstName => _firstnames[this.Next(0, _firstnames.Length)];
