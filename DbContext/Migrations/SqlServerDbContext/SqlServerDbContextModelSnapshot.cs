@@ -31,7 +31,7 @@ namespace DbContext.Migrations.SqlServerDbContext
                     b.Property<long>("CopiesSold")
                         .HasColumnType("bigint");
 
-                    b.Property<Guid?>("MusicGroupId")
+                    b.Property<Guid?>("FKMusicGroupId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
@@ -45,7 +45,7 @@ namespace DbContext.Migrations.SqlServerDbContext
 
                     b.HasKey("AlbumId");
 
-                    b.HasIndex("MusicGroupId");
+                    b.HasIndex("FKMusicGroupId");
 
                     b.ToTable("Albums");
                 });
@@ -74,7 +74,7 @@ namespace DbContext.Migrations.SqlServerDbContext
                 {
                     b.HasOne("DbModels.csMusicGroup", "MusicGroup")
                         .WithMany("Albums")
-                        .HasForeignKey("MusicGroupId");
+                        .HasForeignKey("FKMusicGroupId");
 
                     b.Navigation("MusicGroup");
                 });
