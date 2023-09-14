@@ -39,6 +39,11 @@ builder.Services.AddSingleton<IFriendsService, csFriendsServiceModel>();
 //builder.Services.AddScoped<IFriendsService, csFriendsServiceDb>();
 #endregion
 
+#region MusicService DI
+builder.Services.AddScoped<IMusicRepos, csMusicRepos>();
+builder.Services.AddScoped<IMusicService, csMusicService>();
+#endregion
+
 var app = builder.Build();
 
 #region Configure the HTTP request pipeline

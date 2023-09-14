@@ -25,10 +25,12 @@ namespace AppWebApi.Controllers
     [Route("api/[controller]/[action]")]
     public class MusicController : Controller
     {
-        csMusicService _service = new csMusicService();
+        IMusicService _service;
+        ILogger<MusicController> _logger;
 
-        //GET: api/music/ReadMusicGroups
-        [HttpGet()]
+
+       //GET: api/music/ReadMusicGroups
+       [HttpGet()]
         [ActionName("ReadMusicGroups")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<csMusicGroup>))]
         [ProducesResponseType(400, Type = typeof(string))]
@@ -100,6 +102,12 @@ namespace AppWebApi.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        public MusicController(IMusicService Service, ILogger<MusicController> logger)
+        {
+            _service = Service;
+            _logger = logger;
         }
     }
 }

@@ -9,10 +9,19 @@ using Models.DTO;
 
 namespace Services
 {
-	public class csMusicService
+    public interface IMusicService
+    {
+        public int Seed(int _nrOfItems);
+        public List<csMusicGroup> ReadMusicGroups();
+        public List<csAlbum> ReadAlbums();
+        public List<csMusicGroup> OldestBand();
+    }
+
+
+	public class csMusicService : IMusicService
 	{
         private ILogger<csMusicService> _logger = null;
-        private csMusicRepos _repos = new csMusicRepos(); 
+        private IMusicRepos _repos; 
 
         #region constructors
         public csMusicService()
@@ -20,11 +29,12 @@ namespace Services
 
         }        
         
-        public csMusicService(ILogger<csMusicService> logger)
+        public csMusicService(IMusicRepos repos, ILogger<csMusicService> logger)
         {
             //only for layer verification
             string _instanceHello = $"Hello from class {this.GetType()}.";
 
+            _repos = repos;
             _logger = logger;
             _logger.LogInformation(_instanceHello);
         }

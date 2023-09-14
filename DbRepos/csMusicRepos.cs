@@ -5,8 +5,15 @@ using Models;
 
 namespace DbRepos
 {
-	public class csMusicRepos
-	{
+    public interface IMusicRepos
+    {
+        public int Seed(int _nrOfItems);
+        public List<csMusicGroup> ReadMusicGroups();
+        public List<csAlbum> ReadAlbums();
+    }
+
+	public class csMusicRepos : IMusicRepos
+    {
 		public csMusicRepos()
 		{
 		}
