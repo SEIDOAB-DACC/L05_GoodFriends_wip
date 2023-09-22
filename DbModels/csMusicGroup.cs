@@ -56,8 +56,6 @@ namespace DbModels
         public csAlbum()
         {
         }
-
-
         public csAlbum Seed(csSeedGenerator sgen)
         {
         
